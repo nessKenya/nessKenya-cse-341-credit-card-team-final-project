@@ -1,0 +1,12 @@
+{
+  "_id": "603e2f1f1c4ae30d8c8a5c88",
+  "userId": "603e2f1f1c4ae30d8c8a5c89",
+  "cardId": "603e2f1f1c4ae30d8c8a5c90",
+  "amount": 125.50,
+  "currency": "USD",
+  "merchant": "Amazon.com",
+  "category": "E-commerce",
+  "timestamp": "2025-03-26T15:00:00Z",
+  "status": "completed",
+  "description": "Wireless headphones"
+}
