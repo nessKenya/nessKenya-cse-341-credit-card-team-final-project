@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "properties": {
+  "expiration": {
+    "type": "object",
+    "properties": {
+      "month":{
+        "type": "integer",
+        "example": 12
+      },
+      "year": {
+        "type": "integer",
+        "example": 2026
+      },
+    "required": ["month", "year"]
+    }
+   }
+  }
+}

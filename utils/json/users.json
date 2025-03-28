@@ -1,0 +1,82 @@
+[
+  {
+    "_id": { "$oid": "65fb1a001234567890abcdef" },
+    "firstName": "Alice",
+    "lastName": "Johnson",
+    "email": "alice.johnson@example.com",
+    "phone": "+1-555-101-2020",
+    "address": {
+      "street": "100 Apple Lane",
+      "city": "San Francisco",
+      "state": "CA",
+      "postalCode": "94105",
+      "country": "USA"
+    },
+    "createdAt": { "$date": "2025-03-20T10:00:00Z" },
+    "updatedAt": { "$date": "2025-03-20T10:00:00Z" }
+  },
+  {
+    "_id": { "$oid": "65fb1a001234567890abcdf0" },
+    "firstName": "Brian",
+    "lastName": "Lee",
+    "email": "brian.lee@example.com",
+    "phone": "+1-555-303-4040",
+    "address": {
+      "street": "42 Banana Street",
+      "city": "Los Angeles",
+      "state": "CA",
+      "postalCode": "90001",
+      "country": "USA"
+    },
+    "createdAt": { "$date": "2025-03-20T11:00:00Z" },
+    "updatedAt": { "$date": "2025-03-20T11:00:00Z" }
+  },
+  {
+    "_id": { "$oid": "65fb1a001234567890abcdf1" },
+    "firstName": "Carmen",
+    "lastName": "Nguyen",
+    "email": "carmen.nguyen@example.com",
+    "phone": "+1-555-505-6060",
+    "address": {
+      "street": "11 Cherry Ave",
+      "city": "Austin",
+      "state": "TX",
+      "postalCode": "73301",
+      "country": "USA"
+    },
+    "createdAt": { "$date": "2025-03-20T12:00:00Z" },
+    "updatedAt": { "$date": "2025-03-20T12:00:00Z" }
+  },
+  {
+    "_id": { "$oid": "65fb1a001234567890abcdf2" },
+    "firstName": "David",
+    "lastName": "Kim",
+    "email": "david.kim@example.com",
+    "phone": "+1-555-707-8080",
+    "address": {
+      "street": "789 Orange Blvd",
+      "city": "Chicago",
+      "state": "IL",
+      "postalCode": "60601",
+      "country": "USA"
+    },
+    "createdAt": { "$date": "2025-03-20T13:00:00Z" },
+    "updatedAt": { "$date": "2025-03-20T13:00:00Z" }
+  },
+  {
+    "_id": { "$oid": "65fb1a001234567890abcdf3" },
+    "firstName": "Ella",
+    "lastName": "Martinez",
+    "email": "ella.martinez@example.com",
+    "phone": "+1-555-909-1010",
+    "address": {
+      "street": "123 Pine Drive",
+      "city": "Miami",
+      "state": "FL",
+      "postalCode": "33101",
+      "country": "USA"
+    },
+    "createdAt": { "$date": "2025-03-20T14:00:00Z" },
+    "updatedAt": { "$date": "2025-03-20T14:00:00Z" }
+  }
+]
