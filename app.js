@@ -7,7 +7,8 @@ require('./config/passport'); // Your passport config
 const authRoutes = require('./routes/auth');
 const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('./docs/swagger-output.json');
-
+const YAML = require('yamljs');
+const swaggerDocument = YAML.load('./docs/swagger.yaml');
 const app = express();
 
 app.use(cors());
@@ -22,16 +23,12 @@ app.get('/', (req, res) => {
 });
 
 // Swagger setup
-const swaggerUi = require('swagger-ui-express');
-const YAML = require('yamljs');
-const swaggerDocument = YAML.load('./docs/swagger.yaml');
+
+
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // DB connection
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}).then(() => console.log('MongoDB connected'))
+mongoose.connect(process.env.MONGODB_URI).then(() => console.log('MongoDB connected'))
   .catch((err) => console.error(err));
 
 // Start server

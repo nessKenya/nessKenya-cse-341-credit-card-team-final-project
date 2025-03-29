@@ -1,0 +1,23 @@
+1. npm init -y
+2. npm install express cors dotenv mongoose jsonwebtoken yup
+3. npm install passport passport-google-oauth20
+4. npm install swagger-autogen swagger-jsdoc swagger-ui-express yamljs
+5. npm install express-handlebars
+6. npm install method-override
+7. npm install moment
+8. npm install morgan
+9. npm install cross-env
+10. npm install nodemon 
+11. cse341-final-project-group/
+│
+├── config/
+│   └── passport.js
+├── controllers/
+├── models/
+├── routes/
+├── docs/
+│   └── swagger.yaml
+├── .env
+├── app.js
+├── swagger.js
+└── package.json
