@@ -1,11 +1,13 @@
 const swaggerAutogen = require('swagger-autogen')();
+const isProduction = process.env.NODE_ENV === "production"
 
 const doc = {
   info: {
     title: 'My API',
     description: 'Description'
   },
-  host: 'localhost:8080'
+  host: isProduction?"gym-membership-project.onrender.com":"localhost:8080",
+  schemes: isProduction ? ['https'] : ['http'],
 };
 
 const outputFile = './swagger-output.json';
