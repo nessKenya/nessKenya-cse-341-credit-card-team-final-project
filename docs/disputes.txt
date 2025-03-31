@@ -1,0 +1,11 @@
+{
+  "_id": ObjectId("..."),
+  "userId": ObjectId("..."),         // Reference to Users collection
+  "cardId": ObjectId("..."),         // Reference to Credit Cards collection
+  "transactionId": ObjectId("..."),  // Reference to disputed transaction
+  "reason": "Unauthorized charge",
+  "status": "open",                  // open, under_review, resolved, rejected
+  "openedAt": ISODate("2025-03-26T17:00:00Z"),
+  "resolvedAt": null,
+  "notes": "Customer claims they did not make this purchase."
+}
