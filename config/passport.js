@@ -2,6 +2,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const isProduction = process.env.NODE_ENV === "production"
 const domain = isProduction ? "https://nesskenya-cse-341-credit-card-team-final.onrender.com/":"http://localhost:8080";
 
 passport.use(new GoogleStrategy({
