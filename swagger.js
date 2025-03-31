@@ -3,10 +3,10 @@ const isProduction = process.env.NODE_ENV === "production"
 
 const doc = {
   info: {
-    title: 'My API',
+    title: 'Credit Card API',
     description: 'Description'
   },
-  host: isProduction?"gym-membership-project.onrender.com":"localhost:8080",
+  host: isProduction?"nesskenya-cse-341-credit-card-team-final.onrender.com":"localhost:8080",
   schemes: isProduction ? ['https'] : ['http'],
 };
 
