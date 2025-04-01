@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "swagger": "node ./swagger.js",
     "start": "cross-env NODE_ENV=production node app",
     "dev": "cross-env NODE_ENV=development nodemon app"
   },
@@ -40,5 +42,8 @@
     "swagger-ui-express": "^5.0.1",
     "yamljs": "^0.3.0",
     "yup": "^1.6.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
   }
 }

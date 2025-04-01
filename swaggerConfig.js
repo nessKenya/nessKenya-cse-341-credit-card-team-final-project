@@ -11,7 +11,7 @@ const options = {
     },
     servers: [
       {
-        url: "https://cse341-project2-jj41.onrender.com", // Change to your server URL
+        url: "localhost:3000", // Change to your server URL
       },
     ],
   },

@@ -3,19 +3,15 @@ const swaggerAutogen = require('swagger-autogen')();
 const doc = {
   info: {
     title: 'My API',
-    description: 'API documentation with Swagger Autogen',
+    description: 'Description'
   },
-  host: 'localhost:5000',
-  schemes: ['http'],
-  tags: [
-    {
-      name: 'Auth',
-      description: 'Authentication routes'
-    }
-  ]
+  host: 'localhost:8080'
 };
 
-const outputFile = './docs/swagger-output.json';
-const endpointsFiles = ['./app.js', './routes/auth.js'];
+const outputFile = './swagger-output.json';
+const routes = ['./routes/index.js'];
 
-swaggerAutogen(outputFile, endpointsFiles, doc);
+/* NOTE: If you are using the express Router, you must pass in the 'routes' only the 
+root file where the route starts, such as index.js, app.js, routes.js, etc ... */
+
+swaggerAutogen(outputFile, routes, doc);
