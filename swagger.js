@@ -5,10 +5,10 @@ const doc = {
     title: 'My API',
     description: 'Description'
   },
-  host: 'localhost:8080'
+  host: 'localhost:3000'
 };
 
-const outputFile = './swagger-output.json';
+const outputFile = './docs/swagger-output.json';
 const routes = ['./routes/index.js'];
 
 /* NOTE: If you are using the express Router, you must pass in the 'routes' only the 

@@ -10,8 +10,6 @@ const { swaggerUi, swaggerSpec } = require("./swaggerConfig");
 const passport = require('passport');
 const authRoutes = require('./routes/auth');
 const swaggerFile = require('./docs/swagger-output.json');
-const YAML = require('yamljs');
-const swaggerDocument = YAML.load('./docs/swagger.yaml');
 const bodyParser = require('body-parser');
 const session = require('express-session')
 const GitHubStrategy = require('passport-github2').Strategy;
@@ -22,7 +20,7 @@ app.use(cors());
 app.use(express.json());
 app.use(passport.initialize());
 app.use('/auth', authRoutes);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+
 
 // Example route
 app.get('/', (req, res) => {
@@ -30,9 +28,7 @@ app.get('/', (req, res) => {
 });
 
 // Swagger setup
-
-
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 // Middleware to serve frontend static files
 app.use(express.static(path.join(__dirname, './cse341-credit-card-team-final-project')));
