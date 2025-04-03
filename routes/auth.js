@@ -1,17 +1,28 @@
-const express = require('express');
-const passport = require('passport');
-const router = express.Router();
+const express = require('express')
+const passport = require('passport')
+const router = express.Router()
 
-// Redirect user to Google for authentication
-router.get('/google', passport.authenticate('google', {
-  scope: ['profile', 'email']
-}));
+// @desc    Auth with GitHub
+// @route   GET /auth/github
+router.get('/github', passport.authenticate('github', { scope: ['user:email'] }))
 
-// Callback route after Google authenticates
-router.get('/google/callback',
-  passport.authenticate('google', { failureRedirect: '/' }),
+// @desc    GitHub auth callback
+// @route   GET /auth/github/callback
+router.get(
+  '/github/callback',
+  passport.authenticate('github', { failureRedirect: '/' }),
   (req, res) => {
-    res.send('Google Authentication Successful');
-  });
+    res.redirect('/dashboard')
+  }
+)
 
-module.exports = router;
+// @desc    Logout user
+// @route   GET /auth/logout
+router.get('/logout', (req, res, next) => {
+  req.logout((error) => {
+    if (error) { return next(error) }
+    res.redirect('/')
+  })
+})
+
+module.exports = router

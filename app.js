@@ -12,8 +12,6 @@ const authRoutes = require('./routes/auth');
 const swaggerFile = require('./docs/swagger-output.json');
 const bodyParser = require('body-parser');
 const session = require('express-session')
-const GitHubStrategy = require('passport-github2').Strategy;
-
 
 
 app.use(cors());
@@ -23,9 +21,7 @@ app.use('/auth', authRoutes);
 
 
 // Example route
-app.get('/', (req, res) => {
-  res.send('API is running');
-});
+app.get('/', Routes)
 
 // Swagger setup
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
@@ -58,25 +54,7 @@ app
   })
   .use("/", Routes)
 
-  passport.use(new GitHubStrategy({
-    clientID: process.env.GITHUB_CLIENT_ID,
-    clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    callbackURL: process.env.CALLBACK_URL
-  },
-  function(accessToken, refreshToken, profile, done) {
-    //User.findOrCreate({ githubId: profile.id }, function (err, user) {
-      console.log('Access Token:', accessToken);
-      console.log('GitHub Profile:', profile);
-    return done(null, profile);
-  }
-  ))  
   
-  passport.serializeUser((user, done) => {
-    done(null, user)
-  })
-  passport.deserializeUser((user, done) => {
-    done(null, user)
-  })
   
   app.get('/', (req, res) => {
     res.send(req.session.user !== undefined ? `Logged in as ${req.session.user.displayName}` : "Logged Out");
