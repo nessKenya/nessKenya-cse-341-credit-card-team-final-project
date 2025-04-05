@@ -1,4 +1,3 @@
-
 const { getDb } = require('../config/connect');
 const { ObjectId } = require('mongodb')
 
@@ -11,7 +10,7 @@ dispute.getAll = async (req, res) => {
       res.setHeader('Content-Type', 'application/json');
       res.status(200).json(dispute);
   } catch (error) {
-      console.error("Error fetching disputes:", error);
+      // console.error("Error fetching disputes:", error);
       res.status(500).json({ message: "Internal Server Error" });
   };
 };
@@ -32,7 +31,7 @@ dispute.getOne = async (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(dispute);
   } catch (error) {
-    console.error("Error:", error);
+    // console.error("Error:", error);
     res.status(500).json({ message: "Internal Server Error" });
   };
 };

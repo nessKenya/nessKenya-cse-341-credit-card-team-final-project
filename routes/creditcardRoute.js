@@ -2,15 +2,16 @@ const express = require("express")
 const router = new express.Router()
 const creditCardController = require('../controllers/creditCardController')
 const validation = require('../middleware/validation')
+const { isAuthenticated } = require('../middleware/authenticate');isAuthenticated, 
 
 router.get('/', creditCardController.getAll);
 
 router.get('/:id', creditCardController.getOne);
 
-router.post('/',  validation.savecreditcard, creditCardController.createCreditCard);
+router.post('/',  isAuthenticated, validation.savecreditcard, creditCardController.createCreditCard);
 
-router.put('/:id',  validation.savecreditcard, creditCardController.updateCreditCard);
+router.put('/:id',  isAuthenticated, validation.savecreditcard, creditCardController.updateCreditCard);
 
-router.delete('/:id', creditCardController.deleteCreditCard);
+router.delete('/:id', isAuthenticated, creditCardController.deleteCreditCard);
 
 module.exports = router;

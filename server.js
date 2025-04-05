@@ -1,4 +1,3 @@
-
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -46,16 +45,12 @@ app.use('/users', usersRoute);
 app.use('/cards', creditcardRoute);
 app.use('/transactions', transactionRoute)
 app.use('/disputes', disputeRoute)
-app.use('/auth', authRoute)
-
-app.use('/', (req, res) => {
-  return res.send(req.session?.user ? `Logged In! <br><br>Welcome, ${req.session.user.displayName}`: 'Logged Out')
-})
+app.use('/', authRoute)
 
 const port = 8080;
 
 process.on('uncaughtException', (err, origin) => {
-  console.log(process.stderr.fd, `Caught exception: ${err}\n` + `Exception origin: ${origin}`)
+  console.log(process.stderr.fd, `Caught exception: ${err}\n + Exception origin: ${origin}`)
 });
 
 // Initialize the database before starting the server

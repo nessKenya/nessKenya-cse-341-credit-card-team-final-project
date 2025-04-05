@@ -2,9 +2,13 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 
+router.get('/', (req, res) => {
+  return res.send(req.session?.user ? `Logged In! <br><br>Welcome, ${req.session.user.displayName}`: 'Logged Out')
+})
+
 router.get('/login', passport.authenticate('google', { scope: ['profile'] }));
 
-router.get('/google/callback/', 
+router.get('/auth/google/callback/', 
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication, redirect home.
