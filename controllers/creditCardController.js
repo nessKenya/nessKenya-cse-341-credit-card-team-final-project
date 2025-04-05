@@ -1,4 +1,3 @@
-
 const { getDb } = require('../config/connect');
 const { ObjectId } = require('mongodb')
 
@@ -11,7 +10,7 @@ creditcard.getAll = async (req, res) => {
       res.setHeader('Content-Type', 'application/json');
       res.status(200).json(creditcard);
   } catch (error) {
-      console.error("Error fetching credit cards:", error);
+      // console.error("Error fetching credit cards:", error);
       res.status(500).json({ message: "Internal Server Error" });
   };
 };
@@ -22,10 +21,13 @@ creditcard.getOne = async (req, res) => {
     const db = getDb();
     const creditcardId = new ObjectId(req.params.id);
     const creditcard = await db.collection('creditcard').findOne({_id:creditcardId});
+    if(!creditcard) {
+      return res.status(404).json({error: 'Not found'})
+    }
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(creditcard);
 } catch (error) {
-    console.error("Error fetching contact:", error);
+    // console.error("Error fetching contact:", error);
     res.status(500).json({ message: "Internal Server Error" });
 };
 };
@@ -49,6 +51,7 @@ creditcard.createCreditCard = async(req, res) => {
     }
     } catch (error) {
       console.error("Error fetching user:", error.message);
+      res.status(500).json({ message: "Internal Server Error" });
     };
   };
 
@@ -66,12 +69,13 @@ creditcard.updateCreditCard = async(req, res) => {
   };
   const response = await db.collection('creditcard').replaceOne({_id: creditcardId}, creditcard);
   if (response.modifiedCount > 0) {
-    res.status(204).send();
+    res.status(200).send();
   } else {
     res.status(500).json(response.modifiedCount) || 'Some error occured while adding the user'
   }
   } catch (error) {
     console.error("Error fetching contact:", error);
+    res.status(500).json({ message: "Internal Server Error" });
   };
   };
 
@@ -90,6 +94,7 @@ creditcard.deleteCreditCard = async(req, res) => {
     }
     } catch (error) {
       console.error("Error fetching contact:", error.message);
+      res.status(500).json({ message: "Internal Server Error" });
     };
   };
 
