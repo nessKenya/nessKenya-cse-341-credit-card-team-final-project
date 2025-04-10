@@ -2,27 +2,25 @@ const express = require('express')
 const passport = require('passport')
 const router = express.Router()
 
-// @desc    Auth with GitHub
-// @route   GET /auth/github
-router.get('/github', passport.authenticate('github', { scope: ['user:email'] }))
+router.get('/', (req, res) => {
+  return res.send(req.session?.user ? `Logged In! <br><br>Welcome, ${req.session.user.displayName}`: 'Logged Out')
+})
 
-// @desc    GitHub auth callback
-// @route   GET /auth/github/callback
-router.get(
-  '/github/callback',
-  passport.authenticate('github', { failureRedirect: '/' }),
-  (req, res) => {
-    res.redirect('/dashboard')
-  }
-)
+router.get('/login', passport.authenticate('google', { scope: ['profile'] }));
 
-// @desc    Logout user
-// @route   GET /auth/logout
-router.get('/logout', (req, res, next) => {
-  req.logout((error) => {
-    if (error) { return next(error) }
+router.get('/auth/google/callback/', 
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    req.session.user = req.user;
+    res.redirect('/');
+  });
+
+router.get('/logout', function(req, res, next) {
+  req.logout(function(err){
+    if(err) {return next(err)}
     res.redirect('/')
   })
 })
 
-module.exports = router
+module.exports = router;

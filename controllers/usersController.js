@@ -1,5 +1,4 @@
-
-const { getDb } = require('../models/connect');
+const { getDb } = require('../config/connect');
 const { ObjectId } = require('mongodb')
 
 const users = {}
@@ -11,7 +10,7 @@ users.getAll = async (req, res) => {
       res.setHeader('Content-Type', 'application/json');
       res.status(200).json(users);
   } catch (error) {
-      console.error("Error fetching users:", error);
+      // console.error("Error fetching users:", error);
       res.status(500).json({ message: "Internal Server Error" });
   };
 };
@@ -22,10 +21,13 @@ users.getOne = async (req, res) => {
     const db = getDb();
     const userId = new ObjectId(req.params.id);
     const users = await db.collection('users').findOne({_id:userId});
+    if(!users) {
+      return res.status(404).json({error: 'Not found'})
+    }
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(users);
 } catch (error) {
-    console.error("Error fetching contact:", error);
+    // console.error("Error fetching contact:", error);
     res.status(500).json({ message: "Internal Server Error" });
 };
 };
@@ -48,6 +50,7 @@ users.createUser = async(req, res) => {
     }
     } catch (error) {
       console.error("Error fetching user:", error.message);
+      res.status(500).json({ message: "Internal Server Error" });
     };
   };
 
@@ -64,12 +67,13 @@ users.updateUser = async(req, res) => {
   };
   const response = await db.collection('users').replaceOne({_id: userId}, user);
   if (response.modifiedCount > 0) {
-    res.status(204).send();
+    res.status(200).send();
   } else {
     res.status(500).json(response.modifiedCount) || 'Some error occured while adding the user'
   }
   } catch (error) {
     console.error("Error fetching contact:", error);
+    res.status(500).json({ message: "Internal Server Error" });
   };
   };
 
@@ -88,6 +92,7 @@ users.deleteUser = async(req, res) => {
     }
     } catch (error) {
       console.error("Error fetching contact:", error.message);
+      res.status(500).json({ message: "Internal Server Error" });
     };
   };
 

@@ -1,11 +1,13 @@
 const swaggerAutogen = require('swagger-autogen')();
+const isProduction = process.env.NODE_ENV === "production"
 
 const doc = {
   info: {
-    title: 'My API',
-    description: 'Description'
+    title: 'Credit Card API',
+    description: 'Users, Credit Card, Transactions and Disputes'
   },
-  host: 'localhost:3000'
+  host: isProduction?"nesskenya-cse-341-credit-card-team-final.onrender.com":"localhost:8080",
+  schemes: isProduction ? ['https'] : ['http'],
 };
 
 const outputFile = './docs/swagger-output.json';
